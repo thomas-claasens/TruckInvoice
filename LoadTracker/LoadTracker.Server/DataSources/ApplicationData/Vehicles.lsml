@@ -182,6 +182,16 @@
         Association="VehicleExpiry_Vehicle"
         FromEnd="Vehicle"
         ToEnd="VehicleExpiry" />
+      <NavigationProperty
+        Name="FinanceInstitution"
+        Association="Vehicle_FinanceInstitution"
+        FromEnd="Vehicle"
+        ToEnd="FinanceInstitution" />
+      <NavigationProperty
+        Name="AttendanceRegisters"
+        Association="AttendanceRegister_Vehicle"
+        FromEnd="Vehicle"
+        ToEnd="AttendanceRegister" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -345,6 +355,16 @@
         Name="Vehicle"
         EntitySet="Vehicles" />
     </AssociationSet>
+    <AssociationSet
+      Name="AttendanceRegister_Vehicles"
+      Association="AttendanceRegister_Vehicle">
+      <AssociationSetEnd
+        Name="AttendanceRegister"
+        EntitySet="AttendanceRegisters" />
+      <AssociationSetEnd
+        Name="Vehicle"
+        EntitySet="Vehicles" />
+    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -357,6 +377,10 @@
         <SsdlForeignKeyProperty
           Name="Vehicle_Company"
           Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Vehicle_FinanceInstitution"
+          Nullable="True"
           Type="int" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
@@ -402,6 +426,27 @@
         </SsdlAssociationSetEnd>
       </AssociationSetMapping.Attributes>
     </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="AttendanceRegister_Vehicles">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="AttendanceRegister_Vehicles" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[AttendanceRegister_Vehicles]/Members[AttendanceRegister]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="AttendanceRegister_Vehicle" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[AttendanceRegister_Vehicles]/Members[Vehicle]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
   <Association
     Name="InvoiceLine_Vehicle">
@@ -431,6 +476,22 @@
       <AssociationEnd.Attributes>
         <DeleteRule
           Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="AttendanceRegister_Vehicle">
+    <AssociationEnd
+      Name="AttendanceRegister"
+      Multiplicity="Many"
+      EntityType="AttendanceRegister" />
+    <AssociationEnd
+      Name="Vehicle"
+      Multiplicity="One"
+      EntityType="Vehicle">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
       </AssociationEnd.Attributes>
     </AssociationEnd>
   </Association>

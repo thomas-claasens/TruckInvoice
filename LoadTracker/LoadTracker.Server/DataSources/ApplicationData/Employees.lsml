@@ -441,6 +441,11 @@
         Association="DriverPermitExpiry_Employee"
         FromEnd="Employee"
         ToEnd="DriverPermitExpiry" />
+      <NavigationProperty
+        Name="AttendanceRegisters"
+        Association="AttendanceRegister_Employee"
+        FromEnd="Employee"
+        ToEnd="AttendanceRegister" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -594,6 +599,16 @@
         Name="Employee"
         EntitySet="Employees" />
     </AssociationSet>
+    <AssociationSet
+      Name="AttendanceRegister_Employees"
+      Association="AttendanceRegister_Employee">
+      <AssociationSetEnd
+        Name="AttendanceRegister"
+        EntitySet="AttendanceRegisters" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -650,6 +665,27 @@
         </SsdlAssociationSetEnd>
       </AssociationSetMapping.Attributes>
     </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="AttendanceRegister_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="AttendanceRegister_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[AttendanceRegister_Employees]/Members[AttendanceRegister]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="AttendanceRegister_Employee" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[AttendanceRegister_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
   <Association
     Name="DriverPermitExpiry_Employee">
@@ -657,6 +693,22 @@
       Name="DriverPermitExpiry"
       Multiplicity="Many"
       EntityType="DriverPermitExpiry" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="AttendanceRegister_Employee">
+    <AssociationEnd
+      Name="AttendanceRegister"
+      Multiplicity="Many"
+      EntityType="AttendanceRegister" />
     <AssociationEnd
       Name="Employee"
       Multiplicity="One"
