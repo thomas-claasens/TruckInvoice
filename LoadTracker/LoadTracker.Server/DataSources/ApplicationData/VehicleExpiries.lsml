@@ -5,7 +5,7 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="Mine">
+    Name="VehicleExpiry">
     <EntityType.Attributes>
       <CreatedModifiedPropertiesEnabled />
     </EntityType.Attributes>
@@ -26,82 +26,19 @@
           <NotSearchable />
         </KeyProperty.Attributes>
       </KeyProperty>
-      <EntityProperty
-        Name="Name"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
       <NavigationProperty
-        Name="Town"
-        Association="Mine_Town"
-        FromEnd="Mine"
-        ToEnd="Town" />
+        Name="Vehicle"
+        Association="VehicleExpiry_Vehicle"
+        FromEnd="VehicleExpiry"
+        ToEnd="Vehicle" />
       <EntityProperty
-        Name="SignalPoint"
-        PropertyType=":Person">
+        Name="ExpiryDate"
+        PropertyType=":Date">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength
-            Value="255" />
           <NotSearchable />
         </EntityProperty.Attributes>
       </EntityProperty>
-      <EntityProperty
-        Name="SignalPointCell"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="WeighBridge"
-        PropertyType=":Person">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-          <NotSearchable />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="WeighBridgeCell"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="SafetyOfficer"
-        PropertyType=":Person">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-          <NotSearchable />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="SafetyOfficerCell"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <NavigationProperty
-        Name="Routes"
-        Association="Route_Mine"
-        FromEnd="Mine"
-        ToEnd="Route" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -160,14 +97,14 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="MineSet"
+      Name="VehicleExpiries"
       CanDelete="True"
       CanInsert="True"
       CanUpdate="True"
-      EntityType="Mine" />
+      EntityType="VehicleExpiry" />
     <QueryOperation
-      Name="MineSet_Single"
-      ReturnType="Mine">
+      Name="VehicleExpiries_Single"
+      ReturnType="VehicleExpiry">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -193,7 +130,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="MineSet" />
+            Member="VehicleExpiries" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -206,8 +143,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="MineSet_SingleOrDefault"
-      ReturnType="Mine">
+      Name="VehicleExpiries_SingleOrDefault"
+      ReturnType="VehicleExpiry">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -233,7 +170,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="MineSet" />
+            Member="VehicleExpiries" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -245,16 +182,6 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
-    <AssociationSet
-      Name="Route_MineSet"
-      Association="Route_Mine">
-      <AssociationSetEnd
-        Name="Route"
-        EntitySet="Routes" />
-      <AssociationSetEnd
-        Name="Mine"
-        EntitySet="MineSet" />
-    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -262,50 +189,13 @@
       <Partial />
     </DataService.Attributes>
     <EntitySetMapping
-      EntitySet="MineSet">
+      EntitySet="VehicleExpiries">
       <EntitySetMapping.Attributes>
         <SsdlForeignKeyProperty
-          Name="Mine_Town"
-          Nullable="True"
+          Name="Id"
+          Nullable="False"
           Type="int" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
-    <AssociationSetMapping
-      AssociationSet="Route_MineSet">
-      <AssociationSetMapping.Attributes>
-        <SsdlAssociationSet
-          Name="Route_MineSet" />
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_MineSet]/Members[Route]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Route_Mine" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_MineSet]/Members[Mine]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Id" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-      </AssociationSetMapping.Attributes>
-    </AssociationSetMapping>
   </DataService>
-  <Association
-    Name="Route_Mine">
-    <AssociationEnd
-      Name="Route"
-      Multiplicity="Many"
-      EntityType="Route" />
-    <AssociationEnd
-      Name="Mine"
-      Multiplicity="One"
-      EntityType="Mine">
-      <AssociationEnd.Attributes>
-        <DeleteRule
-          Action="Restrict" />
-      </AssociationEnd.Attributes>
-    </AssociationEnd>
-  </Association>
 </ServiceApplication>

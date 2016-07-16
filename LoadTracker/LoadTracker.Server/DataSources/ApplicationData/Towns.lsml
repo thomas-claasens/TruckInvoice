@@ -55,6 +55,11 @@
         Association="Mine_Town"
         FromEnd="Town"
         ToEnd="Mine" />
+      <NavigationProperty
+        Name="Routes"
+        Association="Route_Town"
+        FromEnd="Town"
+        ToEnd="Route" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -238,6 +243,16 @@
         Name="Town"
         EntitySet="Towns" />
     </AssociationSet>
+    <AssociationSet
+      Name="Route_Towns"
+      Association="Route_Town">
+      <AssociationSetEnd
+        Name="Route"
+        EntitySet="Routes" />
+      <AssociationSetEnd
+        Name="Town"
+        EntitySet="Towns" />
+    </AssociationSet>
   </EntityContainer>
   <Association
     Name="Company_Town">
@@ -344,6 +359,27 @@
         </SsdlAssociationSetEnd>
       </AssociationSetMapping.Attributes>
     </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="Route_Towns">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Route_Towns" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Route_Towns]/Members[Route]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Route_Town" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Route_Towns]/Members[Town]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
   <Association
     Name="Company_Town1">
@@ -382,6 +418,21 @@
       Name="Mine"
       Multiplicity="Many"
       EntityType="Mine" />
+    <AssociationEnd
+      Name="Town"
+      EntityType="Town">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Route_Town">
+    <AssociationEnd
+      Name="Route"
+      Multiplicity="Many"
+      EntityType="Route" />
     <AssociationEnd
       Name="Town"
       EntityType="Town">

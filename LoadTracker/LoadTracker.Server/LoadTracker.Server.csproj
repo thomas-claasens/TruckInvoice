@@ -211,6 +211,16 @@
     <LightSwitchModel Include="DataSources\ApplicationData\JobDescriptions.lsml" />
     <LightSwitchModel Include="DataSources\ApplicationData\Races.lsml" />
     <LightSwitchModel Include="DataSources\ApplicationData\PPEs.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Invoices.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Routes.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\InvoiceLines.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\LoadDetails.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Vehicles.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\VehicleExpiries.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DriverPermits.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\DriverPermitExpiries.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\FinanceInstitutions.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\AttendanceRegisters.lsml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

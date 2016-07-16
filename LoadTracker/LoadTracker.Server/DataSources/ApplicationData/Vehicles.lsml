@@ -5,7 +5,7 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="Customer">
+    Name="Vehicle">
     <EntityType.Attributes>
       <CreatedModifiedPropertiesEnabled />
     </EntityType.Attributes>
@@ -27,7 +27,7 @@
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
-        Name="Name"
+        Name="RegisterNo"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -36,34 +36,7 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="OfficePhoneNumber"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="OfficeFaxNumber"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="EmailAddress"
-        PropertyType="Microsoft.LightSwitch.Extensions:EmailAddress">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PostalAddressLine1"
+        Name="RegistrationNo"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -72,7 +45,7 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="PostalAddressLine2"
+        Name="Make"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -81,80 +54,8 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="PostalAddressCity"
+        Name="FleetNo"
         PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PostalAddressPostCode"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressLine1"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressLine2"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressCity"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressPostCode"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="VATNumber"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="VendorNumber"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="Website"
-        PropertyType="Microsoft.LightSwitch.Extensions:WebAddress">
         <EntityProperty.Attributes>
           <Required />
           <MaxLength
@@ -162,15 +63,135 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <NavigationProperty
-        Name="Invoices"
-        Association="Invoice_Customer"
-        FromEnd="Customer"
-        ToEnd="Invoice" />
+        Name="Company"
+        Association="Vehicle_Company"
+        FromEnd="Vehicle"
+        ToEnd="Company" />
+      <EntityProperty
+        Name="Type"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Horse"
+            Value="0" />
+          <SupportedValue
+            DisplayName="Trailer"
+            Value="1" />
+          <SupportedValue
+            DisplayName="LDV"
+            Value="2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="VinNo"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EngineNo"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Model"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Tara"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ServiceIntervals"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="PrevRegNo"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ExitFleetDate"
+        PropertyType=":Date">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Terminate"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="0" />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TerminateDate"
+        PropertyType=":Date?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TerminateReason"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
       <NavigationProperty
-        Name="Routes"
-        Association="Route_Customer"
-        FromEnd="Customer"
-        ToEnd="Route" />
+        Name="InvoiceLines"
+        Association="InvoiceLine_Vehicle"
+        FromEnd="Vehicle"
+        ToEnd="InvoiceLine" />
+      <NavigationProperty
+        Name="VehicleExpiry"
+        Association="VehicleExpiry_Vehicle"
+        FromEnd="Vehicle"
+        ToEnd="VehicleExpiry" />
+      <NavigationProperty
+        Name="FinanceInstitution"
+        Association="Vehicle_FinanceInstitution"
+        FromEnd="Vehicle"
+        ToEnd="FinanceInstitution" />
+      <NavigationProperty
+        Name="AttendanceRegisters"
+        Association="AttendanceRegister_Vehicle"
+        FromEnd="Vehicle"
+        ToEnd="AttendanceRegister" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -229,14 +250,14 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="Customers"
+      Name="Vehicles"
       CanDelete="True"
       CanInsert="True"
       CanUpdate="True"
-      EntityType="Customer" />
+      EntityType="Vehicle" />
     <QueryOperation
-      Name="Customers_Single"
-      ReturnType="Customer">
+      Name="Vehicles_Single"
+      ReturnType="Vehicle">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -262,7 +283,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Customers" />
+            Member="Vehicles" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -275,8 +296,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="Customers_SingleOrDefault"
-      ReturnType="Customer">
+      Name="Vehicles_SingleOrDefault"
+      ReturnType="Vehicle">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -302,7 +323,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Customers" />
+            Member="Vehicles" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -315,61 +336,68 @@
       </QueryOperationParameter>
     </QueryOperation>
     <AssociationSet
-      Name="Invoice_Customers"
-      Association="Invoice_Customer">
+      Name="InvoiceLine_Vehicles"
+      Association="InvoiceLine_Vehicle">
       <AssociationSetEnd
-        Name="Invoice"
-        EntitySet="Invoices" />
+        Name="InvoiceLine"
+        EntitySet="InvoiceLines" />
       <AssociationSetEnd
-        Name="Customer"
-        EntitySet="Customers" />
+        Name="Vehicle"
+        EntitySet="Vehicles" />
     </AssociationSet>
     <AssociationSet
-      Name="Route_Customers"
-      Association="Route_Customer">
+      Name="VehicleExpiry_Vehicles"
+      Association="VehicleExpiry_Vehicle">
       <AssociationSetEnd
-        Name="Route"
-        EntitySet="Routes" />
+        Name="VehicleExpiry"
+        EntitySet="VehicleExpiries" />
       <AssociationSetEnd
-        Name="Customer"
-        EntitySet="Customers" />
+        Name="Vehicle"
+        EntitySet="Vehicles" />
+    </AssociationSet>
+    <AssociationSet
+      Name="AttendanceRegister_Vehicles"
+      Association="AttendanceRegister_Vehicle">
+      <AssociationSetEnd
+        Name="AttendanceRegister"
+        EntitySet="AttendanceRegisters" />
+      <AssociationSetEnd
+        Name="Vehicle"
+        EntitySet="Vehicles" />
     </AssociationSet>
   </EntityContainer>
-  <Association
-    Name="Invoice_Customer">
-    <AssociationEnd
-      Name="Invoice"
-      Multiplicity="Many"
-      EntityType="Invoice" />
-    <AssociationEnd
-      Name="Customer"
-      Multiplicity="One"
-      EntityType="Customer">
-      <AssociationEnd.Attributes>
-        <DeleteRule
-          Action="Restrict" />
-      </AssociationEnd.Attributes>
-    </AssociationEnd>
-  </Association>
   <DataService
     Name="ApplicationDataMapping">
     <DataService.Attributes>
       <Partial />
     </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="Vehicles">
+      <EntitySetMapping.Attributes>
+        <SsdlForeignKeyProperty
+          Name="Vehicle_Company"
+          Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Vehicle_FinanceInstitution"
+          Nullable="True"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
     <AssociationSetMapping
-      AssociationSet="Invoice_Customers">
+      AssociationSet="InvoiceLine_Vehicles">
       <AssociationSetMapping.Attributes>
         <SsdlAssociationSet
-          Name="Invoice_Customers" />
+          Name="InvoiceLine_Vehicles" />
         <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Invoice_Customers]/Members[Invoice]">
+          End="ApplicationData/Members[InvoiceLine_Vehicles]/Members[InvoiceLine]">
           <SsdlAssociationSetEnd.Attributes>
             <SsdlPropertyRef
-              Name="Invoice_Customer" />
+              Name="InvoiceLine_Vehicle" />
           </SsdlAssociationSetEnd.Attributes>
         </SsdlAssociationSetEnd>
         <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Invoice_Customers]/Members[Customer]">
+          End="ApplicationData/Members[InvoiceLine_Vehicles]/Members[Vehicle]">
           <SsdlAssociationSetEnd.Attributes>
             <SsdlPropertyRef
               Name="Id" />
@@ -378,19 +406,40 @@
       </AssociationSetMapping.Attributes>
     </AssociationSetMapping>
     <AssociationSetMapping
-      AssociationSet="Route_Customers">
+      AssociationSet="VehicleExpiry_Vehicles">
       <AssociationSetMapping.Attributes>
         <SsdlAssociationSet
-          Name="Route_Customers" />
+          Name="VehicleExpiry_Vehicles" />
         <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_Customers]/Members[Route]">
+          End="ApplicationData/Members[VehicleExpiry_Vehicles]/Members[VehicleExpiry]">
           <SsdlAssociationSetEnd.Attributes>
             <SsdlPropertyRef
-              Name="Route_Customer" />
+              Name="Id" />
           </SsdlAssociationSetEnd.Attributes>
         </SsdlAssociationSetEnd>
         <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_Customers]/Members[Customer]">
+          End="ApplicationData/Members[VehicleExpiry_Vehicles]/Members[Vehicle]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="AttendanceRegister_Vehicles">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="AttendanceRegister_Vehicles" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[AttendanceRegister_Vehicles]/Members[AttendanceRegister]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="AttendanceRegister_Vehicle" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[AttendanceRegister_Vehicles]/Members[Vehicle]">
           <SsdlAssociationSetEnd.Attributes>
             <SsdlPropertyRef
               Name="Id" />
@@ -400,15 +449,46 @@
     </AssociationSetMapping>
   </DataService>
   <Association
-    Name="Route_Customer">
+    Name="InvoiceLine_Vehicle">
     <AssociationEnd
-      Name="Route"
+      Name="InvoiceLine"
       Multiplicity="Many"
-      EntityType="Route" />
+      EntityType="InvoiceLine" />
     <AssociationEnd
-      Name="Customer"
+      Name="Vehicle"
       Multiplicity="One"
-      EntityType="Customer">
+      EntityType="Vehicle">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="VehicleExpiry_Vehicle">
+    <AssociationEnd
+      Name="VehicleExpiry"
+      EntityType="VehicleExpiry" />
+    <AssociationEnd
+      Name="Vehicle"
+      Multiplicity="One"
+      EntityType="Vehicle">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="AttendanceRegister_Vehicle">
+    <AssociationEnd
+      Name="AttendanceRegister"
+      Multiplicity="Many"
+      EntityType="AttendanceRegister" />
+    <AssociationEnd
+      Name="Vehicle"
+      Multiplicity="One"
+      EntityType="Vehicle">
       <AssociationEnd.Attributes>
         <DeleteRule
           Action="Restrict" />

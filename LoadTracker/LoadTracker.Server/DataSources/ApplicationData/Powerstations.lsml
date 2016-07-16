@@ -76,6 +76,11 @@
             Value="255" />
         </EntityProperty.Attributes>
       </EntityProperty>
+      <NavigationProperty
+        Name="Routes"
+        Association="Route_Powerstation"
+        FromEnd="Powerstation"
+        ToEnd="Route" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -219,6 +224,16 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
+    <AssociationSet
+      Name="Route_Powerstations"
+      Association="Route_Powerstation">
+      <AssociationSetEnd
+        Name="Route"
+        EntitySet="Routes" />
+      <AssociationSetEnd
+        Name="Powerstation"
+        EntitySet="Powerstations" />
+    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -234,5 +249,42 @@
           Type="int" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="Route_Powerstations">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Route_Powerstations" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Route_Powerstations]/Members[Route]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Route_Powerstation" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Route_Powerstations]/Members[Powerstation]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
+  <Association
+    Name="Route_Powerstation">
+    <AssociationEnd
+      Name="Route"
+      Multiplicity="Many"
+      EntityType="Route" />
+    <AssociationEnd
+      Name="Powerstation"
+      Multiplicity="One"
+      EntityType="Powerstation">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
 </ServiceApplication>

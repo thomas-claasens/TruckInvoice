@@ -5,7 +5,7 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="Mine">
+    Name="LoadDetail">
     <EntityType.Attributes>
       <CreatedModifiedPropertiesEnabled />
     </EntityType.Attributes>
@@ -27,7 +27,7 @@
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
-        Name="Name"
+        Name="TicketNumber"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -35,73 +35,41 @@
             Value="255" />
         </EntityProperty.Attributes>
       </EntityProperty>
-      <NavigationProperty
-        Name="Town"
-        Association="Mine_Town"
-        FromEnd="Mine"
-        ToEnd="Town" />
       <EntityProperty
-        Name="SignalPoint"
-        PropertyType=":Person">
+        Name="LoadDate"
+        PropertyType=":DateTime">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength
-            Value="255" />
           <NotSearchable />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="SignalPointCell"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
+        Name="Mass"
+        PropertyType=":Int32">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="WeighBridge"
-        PropertyType=":Person">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
           <NotSearchable />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="WeighBridgeCell"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
+        Name="LoadType"
+        PropertyType=":Int32">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="SafetyOfficer"
-        PropertyType=":Person">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
           <NotSearchable />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="SafetyOfficerCell"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
+          <SupportedValue
+            DisplayName="Load"
+            Value="0" />
+          <SupportedValue
+            DisplayName="Unload"
+            Value="1" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <NavigationProperty
-        Name="Routes"
-        Association="Route_Mine"
-        FromEnd="Mine"
-        ToEnd="Route" />
+        Name="InvoiceLine"
+        Association="InvoiceLine_LoadDetail"
+        FromEnd="LoadDetail"
+        ToEnd="InvoiceLine" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -160,14 +128,14 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="MineSet"
+      Name="LoadDetails"
       CanDelete="True"
       CanInsert="True"
       CanUpdate="True"
-      EntityType="Mine" />
+      EntityType="LoadDetail" />
     <QueryOperation
-      Name="MineSet_Single"
-      ReturnType="Mine">
+      Name="LoadDetails_Single"
+      ReturnType="LoadDetail">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -193,7 +161,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="MineSet" />
+            Member="LoadDetails" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -206,8 +174,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="MineSet_SingleOrDefault"
-      ReturnType="Mine">
+      Name="LoadDetails_SingleOrDefault"
+      ReturnType="LoadDetail">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -233,7 +201,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="MineSet" />
+            Member="LoadDetails" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -245,16 +213,6 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
-    <AssociationSet
-      Name="Route_MineSet"
-      Association="Route_Mine">
-      <AssociationSetEnd
-        Name="Route"
-        EntitySet="Routes" />
-      <AssociationSetEnd
-        Name="Mine"
-        EntitySet="MineSet" />
-    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -262,50 +220,17 @@
       <Partial />
     </DataService.Attributes>
     <EntitySetMapping
-      EntitySet="MineSet">
+      EntitySet="LoadDetails">
       <EntitySetMapping.Attributes>
         <SsdlForeignKeyProperty
-          Name="Mine_Town"
-          Nullable="True"
+          Name="LoadDetail_Employee"
+          Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="InvoiceLine_LoadDetail"
+          Nullable="False"
           Type="int" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
-    <AssociationSetMapping
-      AssociationSet="Route_MineSet">
-      <AssociationSetMapping.Attributes>
-        <SsdlAssociationSet
-          Name="Route_MineSet" />
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_MineSet]/Members[Route]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Route_Mine" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_MineSet]/Members[Mine]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Id" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-      </AssociationSetMapping.Attributes>
-    </AssociationSetMapping>
   </DataService>
-  <Association
-    Name="Route_Mine">
-    <AssociationEnd
-      Name="Route"
-      Multiplicity="Many"
-      EntityType="Route" />
-    <AssociationEnd
-      Name="Mine"
-      Multiplicity="One"
-      EntityType="Mine">
-      <AssociationEnd.Attributes>
-        <DeleteRule
-          Action="Restrict" />
-      </AssociationEnd.Attributes>
-    </AssociationEnd>
-  </Association>
 </ServiceApplication>
