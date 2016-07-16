@@ -5,7 +5,7 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="Customer">
+    Name="InvoiceLine">
     <EntityType.Attributes>
       <CreatedModifiedPropertiesEnabled />
     </EntityType.Attributes>
@@ -27,134 +27,21 @@
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
-        Name="Name"
+        Name="InvoiceNumber"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="LoadDetails"
+        Association="InvoiceLine_LoadDetail"
+        FromEnd="InvoiceLine"
+        ToEnd="LoadDetail" />
+      <EntityProperty
+        Name="DriverShiftNumber"
         PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="OfficePhoneNumber"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="OfficeFaxNumber"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="EmailAddress"
-        PropertyType="Microsoft.LightSwitch.Extensions:EmailAddress">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PostalAddressLine1"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PostalAddressLine2"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PostalAddressCity"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PostalAddressPostCode"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressLine1"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressLine2"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressCity"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="PhysicalAddressPostCode"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="VATNumber"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="VendorNumber"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="Website"
-        PropertyType="Microsoft.LightSwitch.Extensions:WebAddress">
         <EntityProperty.Attributes>
           <Required />
           <MaxLength
@@ -162,15 +49,32 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <NavigationProperty
-        Name="Invoices"
-        Association="Invoice_Customer"
-        FromEnd="Customer"
-        ToEnd="Invoice" />
-      <NavigationProperty
-        Name="Routes"
-        Association="Route_Customer"
-        FromEnd="Customer"
-        ToEnd="Route" />
+        Name="Vehicle"
+        Association="InvoiceLine_Vehicle"
+        FromEnd="InvoiceLine"
+        ToEnd="Vehicle" />
+      <EntityProperty
+        Name="Problem"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="0" />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Remark"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -229,14 +133,14 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="Customers"
+      Name="InvoiceLines"
       CanDelete="True"
       CanInsert="True"
       CanUpdate="True"
-      EntityType="Customer" />
+      EntityType="InvoiceLine" />
     <QueryOperation
-      Name="Customers_Single"
-      ReturnType="Customer">
+      Name="InvoiceLines_Single"
+      ReturnType="InvoiceLine">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -262,7 +166,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Customers" />
+            Member="InvoiceLines" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -275,8 +179,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="Customers_SingleOrDefault"
-      ReturnType="Customer">
+      Name="InvoiceLines_SingleOrDefault"
+      ReturnType="InvoiceLine">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -302,7 +206,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Customers" />
+            Member="InvoiceLines" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -315,41 +219,31 @@
       </QueryOperationParameter>
     </QueryOperation>
     <AssociationSet
-      Name="Invoice_Customers"
-      Association="Invoice_Customer">
+      Name="InvoiceLine_LoadDetails"
+      Association="InvoiceLine_LoadDetail">
       <AssociationSetEnd
-        Name="Invoice"
-        EntitySet="Invoices" />
+        Name="InvoiceLine"
+        EntitySet="InvoiceLines" />
       <AssociationSetEnd
-        Name="Customer"
-        EntitySet="Customers" />
-    </AssociationSet>
-    <AssociationSet
-      Name="Route_Customers"
-      Association="Route_Customer">
-      <AssociationSetEnd
-        Name="Route"
-        EntitySet="Routes" />
-      <AssociationSetEnd
-        Name="Customer"
-        EntitySet="Customers" />
+        Name="LoadDetail"
+        EntitySet="LoadDetails" />
     </AssociationSet>
   </EntityContainer>
   <Association
-    Name="Invoice_Customer">
+    Name="InvoiceLine_LoadDetail">
     <AssociationEnd
-      Name="Invoice"
-      Multiplicity="Many"
-      EntityType="Invoice" />
-    <AssociationEnd
-      Name="Customer"
+      Name="InvoiceLine"
       Multiplicity="One"
-      EntityType="Customer">
+      EntityType="InvoiceLine">
       <AssociationEnd.Attributes>
         <DeleteRule
-          Action="Restrict" />
+          Action="Cascade" />
       </AssociationEnd.Attributes>
     </AssociationEnd>
+    <AssociationEnd
+      Name="LoadDetail"
+      Multiplicity="Many"
+      EntityType="LoadDetail" />
   </Association>
   <DataService
     Name="ApplicationDataMapping">
@@ -357,62 +251,34 @@
       <Partial />
     </DataService.Attributes>
     <AssociationSetMapping
-      AssociationSet="Invoice_Customers">
+      AssociationSet="InvoiceLine_LoadDetails">
       <AssociationSetMapping.Attributes>
         <SsdlAssociationSet
-          Name="Invoice_Customers" />
+          Name="InvoiceLine_LoadDetails" />
         <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Invoice_Customers]/Members[Invoice]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Invoice_Customer" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Invoice_Customers]/Members[Customer]">
+          End="ApplicationData/Members[InvoiceLine_LoadDetails]/Members[InvoiceLine]">
           <SsdlAssociationSetEnd.Attributes>
             <SsdlPropertyRef
               Name="Id" />
           </SsdlAssociationSetEnd.Attributes>
         </SsdlAssociationSetEnd>
-      </AssociationSetMapping.Attributes>
-    </AssociationSetMapping>
-    <AssociationSetMapping
-      AssociationSet="Route_Customers">
-      <AssociationSetMapping.Attributes>
-        <SsdlAssociationSet
-          Name="Route_Customers" />
         <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_Customers]/Members[Route]">
+          End="ApplicationData/Members[InvoiceLine_LoadDetails]/Members[LoadDetail]">
           <SsdlAssociationSetEnd.Attributes>
             <SsdlPropertyRef
-              Name="Route_Customer" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Route_Customers]/Members[Customer]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Id" />
+              Name="InvoiceLine_LoadDetail" />
           </SsdlAssociationSetEnd.Attributes>
         </SsdlAssociationSetEnd>
       </AssociationSetMapping.Attributes>
     </AssociationSetMapping>
+    <EntitySetMapping
+      EntitySet="InvoiceLines">
+      <EntitySetMapping.Attributes>
+        <SsdlForeignKeyProperty
+          Name="InvoiceLine_Vehicle"
+          Nullable="False"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
   </DataService>
-  <Association
-    Name="Route_Customer">
-    <AssociationEnd
-      Name="Route"
-      Multiplicity="Many"
-      EntityType="Route" />
-    <AssociationEnd
-      Name="Customer"
-      Multiplicity="One"
-      EntityType="Customer">
-      <AssociationEnd.Attributes>
-        <DeleteRule
-          Action="Restrict" />
-      </AssociationEnd.Attributes>
-    </AssociationEnd>
-  </Association>
 </ServiceApplication>

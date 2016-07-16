@@ -287,6 +287,11 @@
         Association="Employee_Company"
         FromEnd="Company"
         ToEnd="Employee" />
+      <NavigationProperty
+        Name="Vehicles"
+        Association="Vehicle_Company"
+        FromEnd="Company"
+        ToEnd="Vehicle" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -440,6 +445,16 @@
         Name="Company"
         EntitySet="Companies" />
     </AssociationSet>
+    <AssociationSet
+      Name="Vehicle_Companies"
+      Association="Vehicle_Company">
+      <AssociationSetEnd
+        Name="Vehicle"
+        EntitySet="Vehicles" />
+      <AssociationSetEnd
+        Name="Company"
+        EntitySet="Companies" />
+    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -480,6 +495,27 @@
         </SsdlAssociationSetEnd>
       </AssociationSetMapping.Attributes>
     </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="Vehicle_Companies">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Vehicle_Companies" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Vehicle_Companies]/Members[Vehicle]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Vehicle_Company" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Vehicle_Companies]/Members[Company]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
   <Association
     Name="Employee_Company">
@@ -487,6 +523,22 @@
       Name="Employee"
       Multiplicity="Many"
       EntityType="Employee" />
+    <AssociationEnd
+      Name="Company"
+      Multiplicity="One"
+      EntityType="Company">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="Vehicle_Company">
+    <AssociationEnd
+      Name="Vehicle"
+      Multiplicity="Many"
+      EntityType="Vehicle" />
     <AssociationEnd
       Name="Company"
       Multiplicity="One"
