@@ -219,6 +219,8 @@
     <LightSwitchModel Include="DataSources\ApplicationData\VehicleExpiries.lsml" />
     <LightSwitchModel Include="DataSources\ApplicationData\DriverPermits.lsml" />
     <LightSwitchModel Include="DataSources\ApplicationData\DriverPermitExpiries.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\FinanceInstitutions.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\AttendanceRegisters.lsml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
