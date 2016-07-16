@@ -177,6 +177,11 @@
         Association="InvoiceLine_Vehicle"
         FromEnd="Vehicle"
         ToEnd="InvoiceLine" />
+      <NavigationProperty
+        Name="VehicleExpiry"
+        Association="VehicleExpiry_Vehicle"
+        FromEnd="Vehicle"
+        ToEnd="VehicleExpiry" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -330,6 +335,16 @@
         Name="Vehicle"
         EntitySet="Vehicles" />
     </AssociationSet>
+    <AssociationSet
+      Name="VehicleExpiry_Vehicles"
+      Association="VehicleExpiry_Vehicle">
+      <AssociationSetEnd
+        Name="VehicleExpiry"
+        EntitySet="VehicleExpiries" />
+      <AssociationSetEnd
+        Name="Vehicle"
+        EntitySet="Vehicles" />
+    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -366,6 +381,27 @@
         </SsdlAssociationSetEnd>
       </AssociationSetMapping.Attributes>
     </AssociationSetMapping>
+    <AssociationSetMapping
+      AssociationSet="VehicleExpiry_Vehicles">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="VehicleExpiry_Vehicles" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[VehicleExpiry_Vehicles]/Members[VehicleExpiry]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[VehicleExpiry_Vehicles]/Members[Vehicle]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
   <Association
     Name="InvoiceLine_Vehicle">
@@ -380,6 +416,21 @@
       <AssociationEnd.Attributes>
         <DeleteRule
           Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <Association
+    Name="VehicleExpiry_Vehicle">
+    <AssociationEnd
+      Name="VehicleExpiry"
+      EntityType="VehicleExpiry" />
+    <AssociationEnd
+      Name="Vehicle"
+      Multiplicity="One"
+      EntityType="Vehicle">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
       </AssociationEnd.Attributes>
     </AssociationEnd>
   </Association>

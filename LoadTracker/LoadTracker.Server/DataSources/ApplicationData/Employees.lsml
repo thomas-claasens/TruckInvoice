@@ -436,6 +436,11 @@
           <NotSearchable />
         </EntityProperty.Attributes>
       </EntityProperty>
+      <NavigationProperty
+        Name="DriverPermitExpiries"
+        Association="DriverPermitExpiry_Employee"
+        FromEnd="Employee"
+        ToEnd="DriverPermitExpiry" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -579,6 +584,16 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
+    <AssociationSet
+      Name="DriverPermitExpiry_Employees"
+      Association="DriverPermitExpiry_Employee">
+      <AssociationSetEnd
+        Name="DriverPermitExpiry"
+        EntitySet="DriverPermitExpiries" />
+      <AssociationSetEnd
+        Name="Employee"
+        EntitySet="Employees" />
+    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -614,5 +629,42 @@
           Type="int" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="DriverPermitExpiry_Employees">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="DriverPermitExpiry_Employees" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DriverPermitExpiry_Employees]/Members[DriverPermitExpiry]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="DriverPermitExpiry_Employee" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[DriverPermitExpiry_Employees]/Members[Employee]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
+  <Association
+    Name="DriverPermitExpiry_Employee">
+    <AssociationEnd
+      Name="DriverPermitExpiry"
+      Multiplicity="Many"
+      EntityType="DriverPermitExpiry" />
+    <AssociationEnd
+      Name="Employee"
+      Multiplicity="One"
+      EntityType="Employee">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
 </ServiceApplication>
