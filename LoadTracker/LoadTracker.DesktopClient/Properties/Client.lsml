@@ -37,9 +37,6 @@
   </GlobalAttributeGroup>
   <Application.Commands>
     <ApplicationCommand
-      Name="ScreenCommandShowSearchCustomers"
-      Target="!module/Methods[ShowSearchCustomers]" />
-    <ApplicationCommand
       Name="ScreenCommandShowSearchEmployees"
       Target="!module/Methods[ShowSearchEmployees]" />
     <ApplicationCommand
@@ -57,6 +54,18 @@
     <ApplicationCommand
       Name="ScreenCommandShowCompaniesListDetail"
       Target="!module/Methods[ShowCompaniesListDetail]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCreateNewInvoiceLine"
+      Target="!module/Methods[ShowCreateNewInvoiceLine]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCustomersListDetail"
+      Target="!module/Methods[ShowCustomersListDetail]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowMineSetListDetail"
+      Target="!module/Methods[ShowMineSetListDetail]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowPowerstationsListDetail"
+      Target="!module/Methods[ShowPowerstationsListDetail]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
@@ -70,8 +79,8 @@
         Name="CompaniesListDetail"
         Command="!module/Commands[ScreenCommandShowCompaniesListDetail]" />
       <ApplicationNavigationLink
-        Name="SearchCustomers"
-        Command="!module/Commands[ScreenCommandShowSearchCustomers]" />
+        Name="CustomersListDetail"
+        Command="!module/Commands[ScreenCommandShowCustomersListDetail]" />
       <ApplicationNavigationLink
         Name="SearchEmployees"
         Command="!module/Commands[ScreenCommandShowSearchEmployees]" />
@@ -92,6 +101,9 @@
       <ApplicationNavigationLink
         Name="link"
         Command="!module/Commands[ScreenCommandShowSearchInvoices]" />
+      <ApplicationNavigationLink
+        Name="link2"
+        Command="!module/Commands[ScreenCommandShowCreateNewInvoiceLine]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="group2">
@@ -115,6 +127,12 @@
       <ApplicationNavigationLink
         Name="UsersScreen"
         Command="Microsoft.LightSwitch.Security:!module/Commands[ScreenCommandShowUsersScreen]" />
+      <ApplicationNavigationLink
+        Name="link3"
+        Command="!module/Commands[ScreenCommandShowMineSetListDetail]" />
+      <ApplicationNavigationLink
+        Name="link4"
+        Command="!module/Commands[ScreenCommandShowPowerstationsListDetail]" />
     </ApplicationNavigationGroup>
   </Application.NavigationItems>
 </Application>

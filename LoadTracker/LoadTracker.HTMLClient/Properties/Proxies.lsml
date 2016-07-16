@@ -262,4 +262,10 @@
         Target="ServiceInterface:AttendanceRegister_Vehicle" />
     </Association.Attributes>
   </Association>
+  <Association>
+    <Association.Attributes>
+      <Proxy
+        Target="ServiceInterface:Invoice_InvoiceLine" />
+    </Association.Attributes>
+  </Association>
 </Application>

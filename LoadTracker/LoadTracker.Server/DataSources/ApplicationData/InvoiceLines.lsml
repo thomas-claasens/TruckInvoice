@@ -75,6 +75,11 @@
             Value="255" />
         </EntityProperty.Attributes>
       </EntityProperty>
+      <NavigationProperty
+        Name="Invoices"
+        Association="Invoice_InvoiceLine"
+        FromEnd="InvoiceLine"
+        ToEnd="Invoice" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -228,6 +233,16 @@
         Name="LoadDetail"
         EntitySet="LoadDetails" />
     </AssociationSet>
+    <AssociationSet
+      Name="Invoice_InvoiceLines"
+      Association="Invoice_InvoiceLine">
+      <AssociationSetEnd
+        Name="Invoice"
+        EntitySet="Invoices" />
+      <AssociationSetEnd
+        Name="InvoiceLine"
+        EntitySet="InvoiceLines" />
+    </AssociationSet>
   </EntityContainer>
   <Association
     Name="InvoiceLine_LoadDetail">
@@ -280,5 +295,42 @@
           Type="int" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="Invoice_InvoiceLines">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="Invoice_InvoiceLines" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Invoice_InvoiceLines]/Members[Invoice]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Invoice_InvoiceLine" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[Invoice_InvoiceLines]/Members[InvoiceLine]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
+  <Association
+    Name="Invoice_InvoiceLine">
+    <AssociationEnd
+      Name="Invoice"
+      Multiplicity="Many"
+      EntityType="Invoice" />
+    <AssociationEnd
+      Name="InvoiceLine"
+      Multiplicity="One"
+      EntityType="InvoiceLine">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
 </ServiceApplication>

@@ -274,4 +274,10 @@
         Target="ServiceInterface:InvoiceLine" />
     </EntityType.Attributes>
   </EntityType>
+  <Association>
+    <Association.Attributes>
+      <Proxy
+        Target="ServiceInterface:Invoice_InvoiceLine" />
+    </Association.Attributes>
+  </Association>
 </Application>

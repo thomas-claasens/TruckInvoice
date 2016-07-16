@@ -71,6 +71,11 @@
             Scale="2" />
         </EntityProperty.Attributes>
       </EntityProperty>
+      <NavigationProperty
+        Name="InvoiceLine"
+        Association="Invoice_InvoiceLine"
+        FromEnd="Invoice"
+        ToEnd="InvoiceLine" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -229,6 +234,10 @@
           Type="int" />
         <SsdlForeignKeyProperty
           Name="Invoice_Route"
+          Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Invoice_InvoiceLine"
           Nullable="False"
           Type="int" />
       </EntitySetMapping.Attributes>
