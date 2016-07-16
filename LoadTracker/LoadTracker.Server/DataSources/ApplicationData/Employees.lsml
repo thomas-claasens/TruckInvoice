@@ -5,7 +5,7 @@
     <Partial />
   </ServiceApplication.Attributes>
   <EntityType
-    Name="Company">
+    Name="Employee">
     <EntityType.Attributes>
       <CreatedModifiedPropertiesEnabled />
     </EntityType.Attributes>
@@ -27,7 +27,7 @@
         </KeyProperty.Attributes>
       </KeyProperty>
       <EntityProperty
-        Name="Name"
+        Name="EmployeeID"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -36,7 +36,7 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="RegistrationNumber"
+        Name="FirstName"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -45,7 +45,7 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="VATnumber"
+        Name="LastName"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -54,7 +54,26 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="OfficePhoneNumber"
+        Name="Initials"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Company"
+        Association="Employee_Company"
+        FromEnd="Employee"
+        ToEnd="Company" />
+      <NavigationProperty
+        Name="JobDescription"
+        Association="Employee_JobDescription"
+        FromEnd="Employee"
+        ToEnd="JobDescription" />
+      <EntityProperty
+        Name="CellPhone"
         PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
         <EntityProperty.Attributes>
           <Required />
@@ -63,21 +82,58 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="OfficeFaxNumber"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
+        Name="HireDate"
+        PropertyType=":Date">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength
-            Value="255" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="Race"
+        Association="Employee_Race"
+        FromEnd="Employee"
+        ToEnd="Race" />
+      <EntityProperty
+        Name="Gender"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Male"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Female"
+            Value="2" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="EmailAddress"
-        PropertyType="Microsoft.LightSwitch.Extensions:EmailAddress">
+        Name="Disabled"
+        PropertyType=":Int32">
         <EntityProperty.Attributes>
           <Required />
-          <MaxLength
-            Value="255" />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ContractStatus"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Permanent"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Temperory"
+            Value="2" />
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
@@ -91,9 +147,8 @@
       </EntityProperty>
       <EntityProperty
         Name="PhysicalAddressLine2"
-        PropertyType=":String">
+        PropertyType=":String?">
         <EntityProperty.Attributes>
-          <Required />
           <MaxLength
             Value="255" />
         </EntityProperty.Attributes>
@@ -127,9 +182,8 @@
       </EntityProperty>
       <EntityProperty
         Name="PostalAddressLine2"
-        PropertyType=":String">
+        PropertyType=":String?">
         <EntityProperty.Attributes>
-          <Required />
           <MaxLength
             Value="255" />
         </EntityProperty.Attributes>
@@ -152,18 +206,155 @@
             Value="255" />
         </EntityProperty.Attributes>
       </EntityProperty>
-      <NavigationProperty
-        Name="DepotTown"
-        Association="Company_Town"
-        FromEnd="Company"
-        ToEnd="Town" />
-      <NavigationProperty
-        Name="OfficeTown"
-        Association="Company_Town1"
-        FromEnd="Company"
-        ToEnd="Town" />
       <EntityProperty
-        Name="ContactName"
+        Name="PayPeriod"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Weekly"
+            Value="0" />
+          <SupportedValue
+            DisplayName="Bi Weekly"
+            Value="1" />
+          <SupportedValue
+            DisplayName="Monthly"
+            Value="2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Pay15th"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+          <DecimalConstraint
+            Precision="18"
+            Scale="2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="HourlyRate"
+        PropertyType="Microsoft.LightSwitch.Extensions:Money?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+          <DecimalConstraint
+            Precision="18"
+            Scale="2" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Contractor"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="0" />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="PoliciesProcedures"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="0" />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="AppointmentOHSA"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="0" />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="SOP"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="0" />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="PPEOverall"
+        Association="Employee_PPE"
+        FromEnd="Employee"
+        ToEnd="PPE" />
+      <NavigationProperty
+        Name="PPEShoe"
+        Association="Employee_PPE1"
+        FromEnd="Employee"
+        ToEnd="PPE" />
+      <NavigationProperty
+        Name="PPEReflectiveVest"
+        Association="Employee_PPE2"
+        FromEnd="Employee"
+        ToEnd="PPE" />
+      <EntityProperty
+        Name="MaritalStatus"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Single"
+            Value="0" />
+          <SupportedValue
+            DisplayName="Married"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="NumberOfChildren"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Relative"
+        PropertyType=":Person">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TerminationDate"
+        PropertyType=":Date?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="TerminationReason"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -172,8 +363,22 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="ContactCell"
-        PropertyType="Microsoft.LightSwitch.Extensions:PhoneNumber">
+        Name="ExitMedicalsDone"
+        PropertyType=":Int32">
+        <EntityProperty.Attributes>
+          <Required />
+          <NotSearchable />
+          <SupportedValue
+            DisplayName="Yes"
+            Value="0" />
+          <SupportedValue
+            DisplayName="No"
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="EmpBClNo"
+        PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
           <MaxLength
@@ -190,7 +395,7 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="BankAccountNumber"
+        Name="BankAcc"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -208,29 +413,7 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="Logo"
-        PropertyType="Microsoft.LightSwitch.Extensions:Image">
-        <EntityProperty.Attributes>
-          <Required />
-          <NotSearchable />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="ContractorType"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-          <SupportedValue
-            Value="Main" />
-          <SupportedValue
-            DisplayName="Sub Contractor"
-            Value="Sub" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="BCRegistrationNo"
+        Name="BankBranchNo"
         PropertyType=":String">
         <EntityProperty.Attributes>
           <Required />
@@ -239,16 +422,7 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="COIDno"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="COIDExpDate"
+        Name="ContractStart"
         PropertyType=":Date">
         <EntityProperty.Attributes>
           <Required />
@@ -256,37 +430,12 @@
         </EntityProperty.Attributes>
       </EntityProperty>
       <EntityProperty
-        Name="UIFNo"
-        PropertyType=":String">
+        Name="ContractEnd"
+        PropertyType=":Date?">
         <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
+          <NotSearchable />
         </EntityProperty.Attributes>
       </EntityProperty>
-      <EntityProperty
-        Name="PAYENo"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <EntityProperty
-        Name="SDLNo"
-        PropertyType=":String">
-        <EntityProperty.Attributes>
-          <Required />
-          <MaxLength
-            Value="255" />
-        </EntityProperty.Attributes>
-      </EntityProperty>
-      <NavigationProperty
-        Name="Employees"
-        Association="Employee_Company"
-        FromEnd="Company"
-        ToEnd="Employee" />
       <EntityProperty
         Name="CreatedBy"
         IsReadOnly="True"
@@ -345,14 +494,14 @@
       <Partial />
     </EntityContainer.Attributes>
     <EntitySet
-      Name="Companies"
+      Name="Employees"
       CanDelete="True"
       CanInsert="True"
       CanUpdate="True"
-      EntityType="Company" />
+      EntityType="Employee" />
     <QueryOperation
-      Name="Companies_Single"
-      ReturnType="Company">
+      Name="Employees_Single"
+      ReturnType="Employee">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -378,7 +527,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Companies" />
+            Member="Employees" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -391,8 +540,8 @@
       </QueryOperationParameter>
     </QueryOperation>
     <QueryOperation
-      Name="Companies_SingleOrDefault"
-      ReturnType="Company">
+      Name="Employees_SingleOrDefault"
+      ReturnType="Employee">
       <QueryOperation.Attributes>
         <Generated />
         <Description
@@ -418,7 +567,7 @@
       <QueryOperation.Source>
         <QuerySourceExpressionTree>
           <MemberExpression
-            Member="Companies" />
+            Member="Employees" />
         </QuerySourceExpressionTree>
       </QueryOperation.Source>
       <QueryOperationParameter
@@ -430,16 +579,6 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
-    <AssociationSet
-      Name="Employee_Companies"
-      Association="Employee_Company">
-      <AssociationSetEnd
-        Name="Employee"
-        EntitySet="Employees" />
-      <AssociationSetEnd
-        Name="Company"
-        EntitySet="Companies" />
-    </AssociationSet>
   </EntityContainer>
   <DataService
     Name="ApplicationDataMapping">
@@ -447,54 +586,33 @@
       <Partial />
     </DataService.Attributes>
     <EntitySetMapping
-      EntitySet="Companies">
+      EntitySet="Employees">
       <EntitySetMapping.Attributes>
         <SsdlForeignKeyProperty
-          Name="Company_Town"
+          Name="Employee_Company"
           Nullable="False"
           Type="int" />
         <SsdlForeignKeyProperty
-          Name="Company_Town1"
+          Name="Employee_JobDescription"
+          Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Employee_Race"
+          Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Employee_PPE"
+          Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Employee_PPE1"
+          Nullable="False"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Employee_PPE2"
           Nullable="False"
           Type="int" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
-    <AssociationSetMapping
-      AssociationSet="Employee_Companies">
-      <AssociationSetMapping.Attributes>
-        <SsdlAssociationSet
-          Name="Employee_Companies" />
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Employee_Companies]/Members[Employee]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Employee_Company" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-        <SsdlAssociationSetEnd
-          End="ApplicationData/Members[Employee_Companies]/Members[Company]">
-          <SsdlAssociationSetEnd.Attributes>
-            <SsdlPropertyRef
-              Name="Id" />
-          </SsdlAssociationSetEnd.Attributes>
-        </SsdlAssociationSetEnd>
-      </AssociationSetMapping.Attributes>
-    </AssociationSetMapping>
   </DataService>
-  <Association
-    Name="Employee_Company">
-    <AssociationEnd
-      Name="Employee"
-      Multiplicity="Many"
-      EntityType="Employee" />
-    <AssociationEnd
-      Name="Company"
-      Multiplicity="One"
-      EntityType="Company">
-      <AssociationEnd.Attributes>
-        <DeleteRule
-          Action="Restrict" />
-      </AssociationEnd.Attributes>
-    </AssociationEnd>
-  </Association>
 </ServiceApplication>

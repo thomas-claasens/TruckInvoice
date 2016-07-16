@@ -45,11 +45,17 @@
     <ApplicationCommand
       Name="ScreenCommandShowCreateNewCompany"
       Target="!module/Methods[ShowCreateNewCompany]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowSearchEmployees"
+      Target="!module/Methods[ShowSearchEmployees]" />
+    <ApplicationCommand
+      Name="ScreenCommandShowCreateNewEmployee"
+      Target="!module/Methods[ShowCreateNewEmployee]" />
   </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
       Name="Tasks"
-      DefaultItem="!module/NavigationItems[Tasks]/Children[SearchCompanies]">
+      DefaultItem="!module/NavigationItems[Tasks]/Children[SearchEmployees]">
       <ApplicationNavigationGroup.Attributes>
         <DisplayName
           Value="Tasks" />
@@ -63,6 +69,12 @@
       <ApplicationNavigationLink
         Name="CreateNewCompany"
         Command="!module/Commands[ScreenCommandShowCreateNewCompany]" />
+      <ApplicationNavigationLink
+        Name="SearchEmployees"
+        Command="!module/Commands[ScreenCommandShowSearchEmployees]" />
+      <ApplicationNavigationLink
+        Name="CreateNewEmployee"
+        Command="!module/Commands[ScreenCommandShowCreateNewEmployee]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">

@@ -204,6 +204,13 @@
     <LightSwitchModel Include="Properties\DataSources\ApplicationData.lsml" />
     <LightSwitchModel Include="DataSources\ApplicationData\Companies.lsml" />
     <LightSwitchModel Include="DataSources\ApplicationData\Towns.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Customers.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Powerstations.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\MineSet.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Employees.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\JobDescriptions.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\Races.lsml" />
+    <LightSwitchModel Include="DataSources\ApplicationData\PPEs.lsml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

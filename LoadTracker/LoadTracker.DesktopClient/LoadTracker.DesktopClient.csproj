@@ -231,6 +231,9 @@
     <Compile Include="Screens\CreateNewCompany.lsml.cs">
       <DependentUpon>CreateNewCompany.lsml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\CreateNewEmployee.lsml.cs">
+      <DependentUpon>CreateNewEmployee.lsml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <LightSwitchModel Include="Properties\Client.lsml">
@@ -243,6 +246,8 @@
     <LightSwitchModel Include="Screens\SearchCompanies.lsml" />
     <LightSwitchModel Include="Screens\SearchTowns.lsml" />
     <LightSwitchModel Include="Screens\CreateNewCompany.lsml" />
+    <LightSwitchModel Include="Screens\SearchEmployees.lsml" />
+    <LightSwitchModel Include="Screens\CreateNewEmployee.lsml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
