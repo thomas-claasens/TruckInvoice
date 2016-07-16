@@ -5,10 +5,12 @@
     <Partial />
   </Application.Attributes>
   <Screen
-    Name="SearchCompanies">
+    Name="SearchAttendanceRegisters">
     <Screen.Attributes>
       <SaveChangesTo
         EntityContainer="ApplicationData" />
+      <DisplayName
+        Value="Search Attendance Register" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -21,34 +23,33 @@
           <ContentItem
             Name="grid"
             Kind="Collection"
-            DataType="CollectionView$Company"
-            View="Microsoft.LightSwitch.RichClient:DataGrid">
+            DataType="CollectionView$AttendanceRegister">
             <ContentItem.DataSource>
               <ScreenExpressionTree>
                 <ChainExpression>
                   <MemberExpression
-                    Member="SearchCompanies/Properties[Companies]" />
+                    Member="SearchAttendanceRegisters/Properties[AttendanceRegisters]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
             <ContentItem
               Name="RowTemplate"
               Kind="Details"
-              DataType="Company">
+              DataType="AttendanceRegister">
               <ContentItem.DataSource>
                 <ScreenExpressionTree>
                   <ChainExpression />
                 </ScreenExpressionTree>
               </ContentItem.DataSource>
               <ContentItem
-                Name="Name"
+                Name="DTRnumber"
                 Kind="Value"
                 DataType=":String">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Company/Properties[Name]" />
+                        Member="AttendanceRegister/Properties[DTRnumber]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -66,86 +67,21 @@
                 </ContentItem.PropertySources>
               </ContentItem>
               <ContentItem
-                Name="RegistrationNumber"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Company/Properties[RegistrationNumber]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="VATnumber"
-                Kind="Value"
-                DataType=":String">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Company/Properties[VATnumber]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="OfficePhoneNumber"
-                Kind="Value"
-                DataType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Company/Properties[OfficePhoneNumber]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="OfficeFaxNumber"
-                Kind="Value"
-                DataType="Microsoft.LightSwitch.Extensions:PhoneNumber">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Company/Properties[OfficeFaxNumber]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="EmailAddress"
-                Kind="Value"
-                DataType="Microsoft.LightSwitch.Extensions:EmailAddress">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="Company/Properties[EmailAddress]" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-              <ContentItem
-                Name="DepotTown"
+                Name="Employee"
                 Kind="Details"
-                DataType="Town">
+                DataType="Employee">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Company/Properties[DepotTown]" />
+                        Member="AttendanceRegister/Properties[Employee]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
                 <ContentItem
                   Name="RowTemplate1"
                   Kind="Details"
-                  DataType="Town">
+                  DataType="Employee">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression />
@@ -154,21 +90,21 @@
                 </ContentItem>
               </ContentItem>
               <ContentItem
-                Name="OfficeTown"
+                Name="Vehicle"
                 Kind="Details"
-                DataType="Town">
+                DataType="Vehicle">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Company/Properties[OfficeTown]" />
+                        Member="AttendanceRegister/Properties[Vehicle]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
                 <ContentItem
                   Name="RowTemplate2"
                   Kind="Details"
-                  DataType="Town">
+                  DataType="Vehicle">
                   <ContentItem.DataSource>
                     <ScreenExpressionTree>
                       <ChainExpression />
@@ -177,27 +113,105 @@
                 </ContentItem>
               </ContentItem>
               <ContentItem
-                Name="ContactName"
+                Name="ShiftStart"
                 Kind="Value"
-                DataType=":String">
+                DataType=":DateTime">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Company/Properties[ContactName]" />
+                        Member="AttendanceRegister/Properties[ShiftStart]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
               </ContentItem>
               <ContentItem
-                Name="ContactCell"
+                Name="ShiftEnd"
                 Kind="Value"
-                DataType="Microsoft.LightSwitch.Extensions:PhoneNumber">
+                DataType=":DateTime">
                 <ContentItem.DataSource>
                   <ScreenExpressionTree>
                     <ChainExpression>
                       <MemberExpression
-                        Member="Company/Properties[ContactCell]" />
+                        Member="AttendanceRegister/Properties[ShiftEnd]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="KilometersStart"
+                Kind="Value"
+                DataType=":Int32">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="AttendanceRegister/Properties[KilometersStart]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="KilometersEnd"
+                Kind="Value"
+                DataType=":Int32">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="AttendanceRegister/Properties[KilometersEnd]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="CreatedBy"
+                Kind="Value"
+                DataType=":Person?">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="AttendanceRegister/Properties[CreatedBy]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Created"
+                Kind="Value"
+                DataType=":DateTimeOffset?">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="AttendanceRegister/Properties[Created]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="ModifiedBy"
+                Kind="Value"
+                DataType=":Person?">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="AttendanceRegister/Properties[ModifiedBy]" />
+                    </ChainExpression>
+                  </ScreenExpressionTree>
+                </ContentItem.DataSource>
+              </ContentItem>
+              <ContentItem
+                Name="Modified"
+                Kind="Value"
+                DataType=":DateTimeOffset?">
+                <ContentItem.DataSource>
+                  <ScreenExpressionTree>
+                    <ChainExpression>
+                      <MemberExpression
+                        Member="AttendanceRegister/Properties[Modified]" />
                     </ChainExpression>
                   </ScreenExpressionTree>
                 </ContentItem.DataSource>
@@ -215,22 +229,6 @@
                 </ControlPropertySource>
               </ContentItem.PropertySources>
             </ContentItem>
-            <ContentItem.CommandItems>
-              <ContentItem
-                Name="Companies_AddAndEditNew"
-                Kind="Command">
-                <ContentItem.DataSource>
-                  <ScreenExpressionTree>
-                    <ChainExpression>
-                      <MemberExpression
-                        Member="SearchCompanies/Properties[Companies]" />
-                      <CallExpression
-                        Target="AddAndEditNew" />
-                    </ChainExpression>
-                  </ScreenExpressionTree>
-                </ContentItem.DataSource>
-              </ContentItem>
-            </ContentItem.CommandItems>
             <ContentItem.PropertySources>
               <ControlPropertySource
                 Property="Microsoft.LightSwitch.RichClient:DataGrid/Properties[ShowVirtualRow]">
@@ -273,7 +271,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchCompanies/Methods[Save]" />
+                    Target="SearchAttendanceRegisters/Methods[Save]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -285,7 +283,7 @@
               <ScreenExpressionTree>
                 <ChainExpression>
                   <CallExpression
-                    Target="SearchCompanies/Methods[Refresh]" />
+                    Target="SearchAttendanceRegisters/Methods[Refresh]" />
                 </ChainExpression>
               </ScreenExpressionTree>
             </ContentItem.DataSource>
@@ -325,20 +323,20 @@
     </Screen.Methods>
     <Screen.Properties>
       <ScreenCollectionProperty
-        Name="Companies"
+        Name="AttendanceRegisters"
         PageSize="45"
-        PropertyType="CollectionView$Company">
+        PropertyType="CollectionView$AttendanceRegister">
         <ScreenCollectionProperty.Query>
           <ScreenQueryDefinition
-            Name="CompaniesQuery"
-            ReturnType="Company*">
+            Name="AttendanceRegistersQuery"
+            ReturnType="AttendanceRegister*">
             <ScreenQueryDefinition.FilterExpression>
               <QueryFilterExpressionTree />
             </ScreenQueryDefinition.FilterExpression>
             <ScreenQueryDefinition.Source>
               <QuerySourceExpressionTree>
                 <MemberExpression
-                  Member="ApplicationData/Members[Companies]" />
+                  Member="ApplicationData/Members[AttendanceRegisters]" />
               </QuerySourceExpressionTree>
             </ScreenQueryDefinition.Source>
           </ScreenQueryDefinition>
@@ -346,7 +344,7 @@
         <ScreenExpressionTree>
           <ChainExpression>
             <CallExpression
-              Target="SearchCompanies/Properties[Companies]/Query" />
+              Target="SearchAttendanceRegisters/Properties[AttendanceRegisters]/Query" />
           </ChainExpression>
         </ScreenExpressionTree>
       </ScreenCollectionProperty>
@@ -354,10 +352,10 @@
   </Screen>
   <Application.Methods>
     <ApplicationMethod
-      Name="ShowSearchCompanies">
+      Name="ShowSearchAttendanceRegisters">
       <ApplicationMethod.Attributes>
         <ShowScreenMethod
-          TargetScreen="SearchCompanies" />
+          TargetScreen="SearchAttendanceRegisters" />
       </ApplicationMethod.Attributes>
     </ApplicationMethod>
   </Application.Methods>

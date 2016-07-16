@@ -175,12 +175,6 @@
   <EntityType>
     <EntityType.Attributes>
       <Proxy
-        Target="ServiceInterface:InvoiceLine" />
-    </EntityType.Attributes>
-  </EntityType>
-  <EntityType>
-    <EntityType.Attributes>
-      <Proxy
         Target="ServiceInterface:LoadDetail" />
     </EntityType.Attributes>
   </EntityType>
@@ -274,4 +268,10 @@
         Target="ServiceInterface:AttendanceRegister_Vehicle" />
     </Association.Attributes>
   </Association>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:InvoiceLine" />
+    </EntityType.Attributes>
+  </EntityType>
 </Application>
