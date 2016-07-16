@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceApplication
-  Name="LightSwitchServiceApplication"
-  Version="1.0.0.0" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
-  <ServiceApplication.Attributes>
+<Application
+  Name="LightSwitchApplication.LoadTracker.HTMLClient"
+  TargetPlatform="MobileWeb"
+  Version="1.0.0.0"
+  Shell="Microsoft.LightSwitch.MobileWeb:HTMLShell"
+  Theme="Microsoft.LightSwitch.MobileWeb:HTMLTheme" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <Application.Attributes>
     <ModuleNamespace
       Namespace="LightSwitchApplication" />
     <Partial
       IsPrimary="True" />
-  </ServiceApplication.Attributes>
+  </Application.Attributes>
   <EntityContainerGroup
     Name="DataWorkspace">
     <EntityContainerGroupProperty
@@ -25,12 +28,18 @@
       Name="ApplicationData"
       EntityContainer="ApplicationData" />
   </EntityContainerGroup>
-  <GlobalAttributeGroup
-    Name="LightSwitchServiceApplicationGroup">
+  <GlobalAttributeGroup>
     <GlobalAttributeGroup.Attributes>
-      <AutomaticDisplayName
-        Expression="(\p{Ll})(\p{Lu})|_+"
-        Replacement="$1 $2" />
+      <Proxy
+        Target="ServiceInterface:LightSwitchServiceApplicationGroup" />
     </GlobalAttributeGroup.Attributes>
   </GlobalAttributeGroup>
-</ServiceApplication>
+  <Application.NavigationItems>
+    <ApplicationNavigationMethodLink
+      Name="link"
+      Method="!module/Methods[showBrowseCompanies]" />
+    <ApplicationNavigationMethodLink
+      Name="link1"
+      Method="!module/Methods[showBrowseTowns]" />
+  </Application.NavigationItems>
+</Application>

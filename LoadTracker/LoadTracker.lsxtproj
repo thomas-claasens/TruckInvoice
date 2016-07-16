@@ -26,6 +26,7 @@
     <ServiceDefinitionFile>ServiceDefinition.csdef</ServiceDefinitionFile>
     <ServiceConfigurationFile>ServiceConfiguration.cscfg</ServiceConfigurationFile>
     <SqlExpressInstanceName>(LocalDB)\MSSQLLocalDB</SqlExpressInstanceName>
+    <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug</OutputPath>
@@ -101,6 +102,12 @@
     <ProjectReference Include="LoadTracker.DesktopClient\LoadTracker.DesktopClient.csproj">
       <Name>LoadTracker.DesktopClient</Name>
       <Project>{27b7ab0a-009f-43df-baab-97c1334e7349}</Project>
+      <Private>True</Private>
+      <Type>Client</Type>
+    </ProjectReference>
+    <ProjectReference Include="LoadTracker.HTMLClient\LoadTracker.HTMLClient.jsproj">
+      <Name>LoadTracker.HTMLClient</Name>
+      <Project>{17b2c00e-4e64-4de1-8eae-35170e8571ff}</Project>
       <Private>True</Private>
       <Type>Client</Type>
     </ProjectReference>
